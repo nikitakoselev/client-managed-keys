@@ -45,7 +45,7 @@ namespace ClientManagedKeys.Server
                 .AddHttpMessageSignatureVerification(
                     Client.Create(
                         "f011e0fca818d436a75abf878a31accf1e7d80d4",
-                        "Nordic API Gateway 'Client Managed Keys' Test Client",
+                        "Aiia 'Client Managed Keys' Test Client",
                         SignatureAlgorithm.CreateForVerification(authCert, HashAlgorithmName.SHA256)
                     )
                 )

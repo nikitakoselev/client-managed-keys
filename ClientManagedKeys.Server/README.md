@@ -1,14 +1,14 @@
 # Client Managed Keys Reference Server
-For connecting to APIs on behalf of its clients, Nordic API Gateway needs to
+For connecting to APIs on behalf of its clients, Aiia Enterprise needs to
 perform cryptographic operations on behalf of the client. 
 
-For added security, Nordic API Gateway can proxy signing and decryption to
-a client managed service, removing the need to Nordic API Gateway to be in possession
+For added security, Aiia Enterprise can proxy signing and decryption to
+a client managed service, removing the need for Aiia Enterprise to be in possession
 of the private keys and enabling the client to audit and control access to the
 keys. 
 
 This project is a reference implementation of the proxy protocol supported by 
-Nordic API Gateway.
+Aiia Enterprise.
  
 ## Response status codes
 
