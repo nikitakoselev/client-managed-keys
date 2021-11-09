@@ -56,7 +56,7 @@ namespace ClientManagedKeys.Server
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Client Managed Keys",
+                    Title = "Aiia Keyless TLS API",
                     Version = "v1",
                     Description = ReadDocumentationFile("README.md")
                 });

@@ -1,52 +1,51 @@
-# Client Managed Keys Reference Server
-For connecting to APIs on behalf of its clients, Aiia Enterprise needs to
-perform cryptographic operations on behalf of the client. 
+# Aiia Keyless TLS Reference Server
 
-For added security, Aiia Enterprise can proxy signing and decryption to
-a client managed service, removing the need for Aiia Enterprise to be in possession
-of the private keys and enabling the client to audit and control access to the
-keys. 
+For connecting to APIs on behalf of its clients, Aiia Enterprise needs to perform cryptographic operations on behalf of
+the client.
 
-This project is a reference implementation of the proxy protocol supported by 
-Aiia Enterprise.
- 
+For added security, Aiia  Enterprise can proxy signing and decryption to a client managed service, removing the need for
+Aiia Enterprise to be in possession of the private keys and enabling the client to audit and control access to the keys.
+
+This project is a reference implementation of the proxy protocol supported by Aiia Enterprise.
+
 ## Response status codes
 
 Implementations MUST use HTTP status codes as the primary means of communicating success / failure.
 
 *Successful codes*
+
 - 200 OK
- - Returns payload
+    - Returns payload
 
 *Failure codes*
+
 - 400 Bad Request
- - Missing required properties from request
- - Malformed payload
- - Invalid payload for operation
+    - Missing required properties from request
+    - Malformed payload
+    - Invalid payload for operation
 - 401 Unauthorized
- - Invalid or missing API-key provided
-- 403 Forbidden 
- - Operation rejected, eg. due to audit checks of correlation IDs
+    - Invalid or missing API-key provided
+- 403 Forbidden
+    - Operation rejected, eg. due to audit checks of correlation IDs
 - 404 Not Found
- - Invalid keyId
- - KeyId not known to server
-- 429 Too Many Requests 
- - Rate limit reached, clients should retry
+    - Invalid keyId
+    - KeyId not known to server
+- 429 Too Many Requests
+    - Rate limit reached, clients should retry
 
 Implementations SHOULD populate the `message` property of the error message when possible.
- 
+
 ## Operational requirements
- 
+
 All servers implementing this specification MUST NOT reject signing requests for the specific payload:
- 
+
 `TkFHQ2xpZW50TWFuYWdlZEtleXNWZXJpZmljYXRpb24=` (in ASCII `NAGClientManagedKeysVerification`)
 
 This test vector is used for regularly verifying and testing system health.
 
 ## Demo Key Material
 
-The server is preloaded with a demo key in `DemoKey.pfx` (password `test`). 
-The key has the following certificate:
+The server is preloaded with a demo key in `DemoKey.pfx` (password `test`). The key has the following certificate:
 
 ````
 -----BEGIN CERTIFICATE-----
@@ -90,7 +89,8 @@ curl --location --request POST 'https://localhost:5001/v1/0e4085c0ae94078ad8992e
 }'
 ````
 
-Results in the response 
+Results in the response
+
 ````
 {
      "payload": "fFTZOo2+Sa9xquCm7Kcy74T7OhS+DaSVh7cQVmXXVkHUXcwqiLldjKwqEOk9ux/DliZ3mMJT6xo7cc28rfWa+54hzhjEmIdkBos0ZUs+6YFezYcabzGlTmGPm6K5zLZqMGSwx2bvKThrCI0q7mv+Nc7jNctUZ2S5zei6HrCELXy2UR5zLcaZUBUAyECKl19hYzx2eilSCMy4dt2lp3QnR1b/KM/7HIgJLFdlDHDpbZNA0qwqvq3j8bzOjpXAK5W0SN/rkNRiKPT/1hXMpPEh75iR0rFyyM/oope7ccCJ3iCghVLZ8s7S5ulntjA2lPYTnfKMIJuoeKAqEuVJQxqUJA=="
@@ -113,7 +113,7 @@ curl --location --request POST 'https://localhost:5001/v1/0e4085c0ae94078ad8992e
 }'
 ````
 
-Results in the response: 
+Results in the response:
 
 ```
 {"payload":"SGVsbG8gd29ybGQK"}
